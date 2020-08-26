@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
-RESOURCES_BASE_PATH = '/Users/panghu/Documents/python/opq/python--iotbot/resources/zan'
+RESOURCES_BASE_PATH = './resources/zan'  
+# 在这个文件夹下建立一个文件夹   实例/zan/date/
 # ==========================================
 
 # 屏蔽群 例：[12345678, 87654321]
