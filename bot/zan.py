@@ -54,11 +54,26 @@ def receive_group_msg(ctx: GroupMsg):
             )
         else:
             if(isToday(f) == 1):
-                Text('你已经签到过了，请明天在来吧~')
+                Text('你已经赞过了，请明天在来吧~')
             else :
+                Action(ctx.CurrentQQ).send_group_text_msg(
+                    ctx.FromGroupId,
+                    content='正在赞~~请稍等，大概花费50s左右',
+                    atUser=ctx.FromUserId
+                )
                 nowTime = returnDate()
                 save(nowTime, ctx.FromUserId)
-                Text('赞成功了')
+
+                for i in range(50):
+                    Action(ctx.CurrentQQ).like(
+                        ctx.FromUserId
+                    )
+                    time.sleep(1)
+                Action(ctx.CurrentQQ).send_group_text_msg(
+                    ctx.FromGroupId,
+                    content='赞好啦~请查收',
+                    atUser=ctx.FromUserId
+                )
 
 def returnDate():
     now = time.time()
@@ -86,4 +101,5 @@ def read(qq):
         return 0
     with open(fullPath, 'r', encoding='utf-8') as f:
         return json.loads(f.read())
+
 
